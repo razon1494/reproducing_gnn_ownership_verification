@@ -36,8 +36,7 @@ pip install argparse
 
 1. **global_cfg.yaml: the config of overall experiment setting.** 
 - target_model: architecture of target model. Valid values: [gcn, gat, sage].
-- target_hidden_dims: hidden layer dimension of target model. Valid values: [[352, 128],[288, 128],[224, 128]].
-- dataset: graph dataset. Valid values: [Cora, Citeseer, Amazon, DBLP, PubMed].
+ - dataset: graph dataset. Valid values: [Cora, Citeseer, Amazon, DBLP, PubMed].
 - train_setting: setting file for training local models. Valid values: fixed.
 - test_setting: setting file for training real models. Valid values: [1, 2, 3, 4].
 - embedding_dim: additional last layer in local and real models, used for reproducing Grove white-box method. Valid values: fixed.

@@ -10,7 +10,13 @@ from tqdm import tqdm
 from utils.config import parse_args
 from pathlib import Path
 import random
-
+import torch.serialization
+torch.serialization._legacy_imports_enabled = True  # Add this line above if not already present
+torch.serialization.add_safe_globals({
+    'model.gnn_models.GAT': model.gnn_models.GAT,
+    'model.gnn_models.GCN': model.gnn_models.GCN,
+    'model.gnn_models.SAGE': model.gnn_models.SAGE,
+})
 
 def transductive_train(args, model_save_path, graph_data, process):
     if torch.cuda.is_available():
@@ -32,7 +38,7 @@ def transductive_train(args, model_save_path, graph_data, process):
 
 
     if path.is_file():
-        gnn_model = torch.load(model_save_path)
+        gnn_model = torch.load(model_save_path, weights_only=False)
     else:
         if args.benign_model == 'gcn':
             gnn_model = model.gnn_models.GCN(gdata.feat_dim, gdata.class_num, hidden_dim=args.benign_hidden_dim)
@@ -128,7 +134,7 @@ def inductive_train(args, model_save_path, graph_data, process):
     predict_fn = lambda output: output.max(1, keepdim=True)[1]
     path = Path(model_save_path)
     if path.is_file():
-        gnn_model = torch.load(model_save_path)
+        gnn_model = torch.load(model_save_path, weights_only=False)
     else:
         if args.benign_model == 'gcn':
             gnn_model = model.gnn_models.GCN(target_graph_data.feat_dim, target_graph_data.class_num, hidden_dim=args.benign_hidden_dim)
