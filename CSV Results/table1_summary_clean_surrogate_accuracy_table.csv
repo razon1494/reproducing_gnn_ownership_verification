@@ -1,0 +1,16 @@
+﻿Dataset,Model,Setting,Clean Accuracy,Surrogate Accuracy
+Amazon,GAT,Random M,92.51 ± 0.74,92.09 ± 0.53
+Amazon,GCN,Random M,93.77 ± 0.26,93.36 ± 0.21
+Amazon,SAGE,Random M,96.34 ± 0.30,93.62 ± 0.11
+Citeseer,GAT,Random M,93.22 ± 0.43,92.36 ± 0.51
+Citeseer,GCN,Random M,93.93 ± 0.24,93.19 ± 0.05
+Citeseer,SAGE,Random M,93.54 ± 0.24,93.34 ± 0.05
+Cora,GAT,Random M,80.64 ± 0.74,80.60 ± 0.36
+Cora,GCN,Random M,84.31 ± 0.49,83.90 ± 0.49
+Cora,SAGE,Random M,85.42 ± 0.49,84.49 ± 0.30
+DBLP,GAT,Random M,81.57 ± 0.20,79.91 ± 0.07
+DBLP,GCN,Random M,81.45 ± 0.21,81.15 ± 0.11
+DBLP,SAGE,Random M,83.45 ± 0.25,81.49 ± 0.05
+PubMed,GAT,Random M,84.14 ± 0.34,83.10 ± 0.51
+PubMed,GCN,Random M,85.34 ± 0.18,85.26 ± 0.08
+PubMed,SAGE,Random M,87.76 ± 0.21,85.09 ± 0.16
