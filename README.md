@@ -4,7 +4,42 @@
 
 This paper will appear in IEEE Symposium on Security and Privacy 2024. 
 
-This repo contains code that allows you to reproduce experiments presented in the paper.
+## Overview
+
+This repository presents my independent reproduction and analysis of the paper  
+**"Revisiting Black-box Ownership Verification for Graph Neural Networks" (IEEE S&P 2024)**.
+
+My goal is not only to reproduce the reported results, but also to:
+- understand the robustness and limitations of black-box ownership verification for GNNs,
+- analyze how verification performance changes under different architectures and attack settings,
+- and explore directions toward more structure-aware and robust fingerprinting methods.
+
+This project is part of my preparation for PhD-level research in applied machine learning security.
+
+## What Was Reproduced
+
+I reproduced the following experiments from the paper:
+
+- Base black-box ownership verification (Section 5.2)
+- Multiple verification settings (Settings 1–4)
+- Robustness evaluations under:
+  - model fine-tuning
+  - weight pruning
+  - double extraction
+- Adaptive attack scenarios (Section 6.4)
+
+Experiments were run on:
+- Datasets: Cora, Citeseer (extendable)
+- Architectures: GCN, GAT, GraphSAGE
+- Learning paradigm: Transductive
+
+## My Contributions
+
+- Successfully reproduced core experimental results from the IEEE S&P 2024 paper.
+- Verified robustness behaviors under multiple attack and defense settings.
+- Structured and documented the experiment pipeline for clarity and reproducibility.
+- Identified sensitivity patterns and limitations that motivate future structure-aware verification methods.
+
 
 ## Environment Setup
 
