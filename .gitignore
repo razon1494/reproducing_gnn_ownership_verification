@@ -26,3 +26,9 @@ analysis/
 # Logs
 *.log
 EOF
+
+# Datasets / processed artifacts
+dataset/
+data/
+**/processed/
+**/*.pt
