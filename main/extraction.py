@@ -7,6 +7,75 @@ import torch.optim.lr_scheduler as lr_scheduler
 import model.extraction_models
 from tqdm import tqdm
 from pathlib import Path
+from torch.nn import Sequential
+from model.extraction_models import GatExtract, GcnExtract, SageExtract, GinExtract, SGCExtract
+import torch.serialization
+from torch.nn.modules.container import ModuleList 
+from torch_geometric.nn import GATConv
+from torch_geometric.nn.aggr.basic import SumAggregation
+from torch_geometric.nn.dense.linear import Linear
+from torch_geometric.inspector import Inspector
+from torch_geometric.inspector import Signature 
+from torch_geometric.inspector import Parameter
+import inspect
+import operator
+import typing
+from torch_geometric.nn.conv.gcn_conv import GCNConv
+from torch_geometric.nn.conv.sage_conv import SAGEConv
+from torch_geometric.nn.aggr.basic import MeanAggregation
+from typing import Tuple
+from torch_geometric.nn.conv.gin_conv import GINConv
+from torch.nn import Linear as TorchLinear
+from torch.nn import BatchNorm1d
+from torch.nn import ReLU
+from torch_geometric.nn.conv.sg_conv import SGConv
+
+
+torch.serialization.add_safe_globals({
+    GatExtract: GatExtract,
+    GcnExtract: GcnExtract,
+    SageExtract: SageExtract,
+    GinExtract: GinExtract,
+    SGCExtract: SGCExtract,
+    GCNConv: GCNConv,
+
+    # PyTorch internals
+    ModuleList: ModuleList,
+    Linear: Linear,
+    Parameter: Parameter,
+    GATConv: GATConv,
+    SumAggregation: SumAggregation,
+    Inspector: Inspector,
+    SAGEConv: SAGEConv,
+    Signature: Signature,
+    MeanAggregation: MeanAggregation,
+    GINConv: GINConv,
+
+    # Standard Python built-ins & typing
+    int: int,
+    float: float,
+    bool: bool,
+    str: str,
+    dict: dict,
+    list: list,
+    Tuple: Tuple,
+    type: type,
+    object: object,
+    typing.Union: typing.Union,
+    typing.OrderedDict: typing.OrderedDict,
+
+    # From inspect/operator
+    inspect._empty: inspect._empty,
+    operator.getitem: operator.getitem,
+    Sequential: Sequential,
+    TorchLinear: TorchLinear,
+    BatchNorm1d: BatchNorm1d,
+    ReLU: ReLU,
+    SGConv: SGConv,
+
+})
+
+
 
 
 class Classification(torch.nn.Module):

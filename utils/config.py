@@ -3,7 +3,7 @@ import argparse
 def add_data_group(group):
     group.add_argument('--dataset', type=str, default='Cora', help="used dataset")
     group.add_argument('--data_path', type=str, default='../dataset', help="the directory used to save dataset")
-    group.add_argument('--task_type', type=str, default='transductive')
+    group.add_argument('--task_type', type=str, default='inductive')
     group.add_argument('--dataset_random_seed', type=int, default=999)
     group.add_argument('--feature_random_seed', type=int, default=999)
     group.add_argument('--split_dataset_ratio', type=list, default=[0.3, 0.3, 0.3, 0.1])
