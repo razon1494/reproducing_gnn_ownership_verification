@@ -2,8 +2,6 @@
 
 ***Paper title: Revisiting Black-box Ownership Verification for Graph Neural Networks***
 
-This paper will appear in IEEE Symposium on Security and Privacy 2024. 
-
 ## Overview
 
 This repository presents my independent reproduction and analysis of the paper  
