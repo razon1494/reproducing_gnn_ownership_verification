@@ -35,7 +35,7 @@ Experiments were run on:
 
 Beyond reproducing the experimental pipeline provided by the original authors, my contributions include:
 
-- Successfully reproduced core experimental results from the IEEE S&P 2024 paper.
+- Successfully reproduced core experimental results reported in the IEEE S&P 2024 paper.
 - Implementing and reproducing the robustness evaluation corresponding to **Table 8 (Impact of Double Extraction)**.
 - Aggregating experimental results across multiple datasets, verification settings, and learning paradigms into a unified analysis script.
 - Verifying consistency between reproduced results and those reported in the paper, while identifying scenarios where verification performance degrades under repeated extraction.
@@ -55,6 +55,7 @@ These observations suggest that future ownership verification methods should exp
 
 The reproduced results for the impact of double extraction are summarized in the folder `CSV Results` and the file name is: `table8_impact_of_double_extraction.csv`.
 
+## Implementation and Reproducibility Details (Optional)
 
 ## Environment Setup
 
@@ -82,63 +83,14 @@ pip install argparse
 
 ## File Illustration
 
-### In "config" Folder:
+## Code Structure (High-Level)
 
-1. **global_cfg.yaml: the config of overall experiment setting.** 
-- target_model: architecture of target model. Valid values: [gcn, gat, sage].
- - dataset: graph dataset. Valid values: [Cora, Citeseer, Amazon, DBLP, PubMed].
-- train_setting: setting file for training local models. Valid values: fixed.
-- test_setting: setting file for training real models. Valid values: [1, 2, 3, 4].
-- embedding_dim: additional last layer in local and real models, used for reproducing Grove white-box method. Valid values: fixed.
-- train_process: train local models. Valid values: fixed.
-- test_process: train real models. Valid values: fixed.
-- n_run: repeating number of verification experiments. Valid values: can be any number.
-- train_save_root: saving path for the training models in ownership verification.
-- test_save_root: saving path for the testing models in ownership verification.
-- res_path: saving path for the ownership verification results.
+- `main/`: experiment orchestration, extraction, robustness evaluation, and verification logic
+- `model/`: GNN architectures, extraction models, and verification classifiers
+- `config/`: experiment configurations for datasets, architectures, and verification settings
+- `utils/`: data loading, graph processing, and shared utilities
 
-2. **train_setting.yaml: the config of target model.**
-- model_arches: architecture of model. Valid values: [gcn, gat, sage].
-- layer_dims: hidden dimension of each layer can be selected. Valid values: [96,  160, 224, 288, 352]
-- num_hidden_layers: number of hidden layer. Valid values: [2].
-- num_model_per_arch: number of models will be trained for each model architecture. Valid values: can be any number.
-
-3. **test_setting1.yaml/ test_setting2.yaml/ test_setting3.yaml/ test_setting4.yaml: the config of local models and test models.**
-- model_arches: architecture of model. Valid values: [gcn, gat, sage] for setting 1/2, [gin, sgc] for setting 3/4.
-- layer_dims: hidden dimension of each layer can be selected. Valid values: [96,  160, 224, 288, 352] for setting 1/3, [128, 192, 256, 320, 384] for setting 2/4.
-- num_hidden_layers: number of hidden layer. Valid values: [2] for setting 1/3, [1, 3] for setting 2/4.
-- num_model_per_arch: number of models will be trained for each model architecture. Valid values: can be any number.
-
-### In "main" Folder:
-
-1. **benign.py: train independent models**
-2. **boundary.py: mask training data**
-3. **extraction.py: train extraction models**
-4. **main.py: main entry to run all experiments**
-5. **robustness.py: robustness techniques**
-6. **verification_cfg.py: run ownership verification experiment**
-
-### In "model" Folder:
-
-1. **extraction_models.py: architecture of extraction models**
-2. **gnn_models.py: architecture of independent models**
-3. **mlp.py: architecture of ownership verification classifier**
-
-### In "utils" Folder:
-
-1. **config.py:**
-- data_path: saving path for graph dataset.
-- task_type: learning paradigms. Valid values: [transductive, inductive]
-- split_dataset_ratio: ratio of splitting training data and testing data for each kind of models.
-- mask_feat_ratio: ratio of all nodes in the training data will be masked.
-- prune_weight_ratio: ratio of model parameters will be pruned in robustness experiments.
-- benign_train_epochs: number of epochs to train independent models.
-- benign_lr: learning rate of training independent models.
-- extraction_train_epochs: number of epochs to train extraction models.
-- extraction_lr: learning rate of training extraction models.
-- extraction_method: access to model extraction. Valid values: [black_box, white_box]
-2. **datareader.py: load graph dataset and construct self-defined data**
-3. **graph_operator.py: split dataset for inductive learning**
+Detailed configuration and execution instructions are provided below for reproducibility.
 
 
 ## Run Experiments
