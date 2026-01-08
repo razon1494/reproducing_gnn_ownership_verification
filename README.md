@@ -33,10 +33,27 @@ Experiments were run on:
 
 ## My Contributions
 
+Beyond reproducing the experimental pipeline provided by the original authors, my contributions include:
+
 - Successfully reproduced core experimental results from the IEEE S&P 2024 paper.
-- Verified robustness behaviors under multiple attack and defense settings.
-- Structured and documented the experiment pipeline for clarity and reproducibility.
-- Identified sensitivity patterns and limitations that motivate future structure-aware verification methods.
+- Implementing and reproducing the robustness evaluation corresponding to **Table 8 (Impact of Double Extraction)**.
+- Aggregating experimental results across multiple datasets, verification settings, and learning paradigms into a unified analysis script.
+- Verifying consistency between reproduced results and those reported in the paper, while identifying scenarios where verification performance degrades under repeated extraction.
+- Structuring the codebase and analysis artifacts to support further extensions toward more robust and structure-aware fingerprinting methods.
+
+All analysis scripts and result summaries were developed independently as part of this reproduction study.
+
+## Key Observations and Insights
+
+From the reproduced experiments, I observed the following patterns:
+
+- **Double extraction significantly weakens ownership verification performance**, particularly under transductive settings, indicating that repeated model extraction poses a serious threat to current black-box verification methods.
+- **Verification robustness varies across datasets and architectures**, suggesting that existing methods may implicitly rely on dataset-specific structural properties.
+- In several settings, verification accuracy remains high despite non-zero false positive rates, highlighting a potential trade-off between detection sensitivity and reliability.
+
+These observations suggest that future ownership verification methods should explicitly account for adaptive adversaries and structural graph properties, motivating exploration of structure-aware fingerprinting strategies.
+
+The reproduced results for the impact of double extraction are summarized in the folder `CSV Results` and the file name is: `table8_impact_of_double_extraction.csv`.
 
 
 ## Environment Setup
